@@ -1,6 +1,8 @@
 const buttonColor = ["red", "blue", "green", "yellow"];
 let gamePattern = [];
 let userClickedPattern = [];
+let level = 0;
+let gameStarted = false;
 
 $(".btn").click(function () {
   let userChosenColor = $(this).attr("id");
@@ -17,6 +19,7 @@ function nextSequence() {
     .fadeIn(100)
     .fadeOut(100)
     .fadeIn(100);
+  level++;
 }
 
 function playSound(name) {
@@ -30,3 +33,11 @@ function animatePress(currentColor) {
     $("#" + currentColor).removeClass("pressed");
   }, 100);
 }
+
+$(document).keypress(function () {
+  if (!gameStarted) {
+    $("#level-title").text("Level " + level);
+    nextSequence();
+    started = true;
+  }
+});
